@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "47FNqfNVwUuLSSW60wJcZb6NWEnJ3zyZFkftr4xGZjQ=",
+  "Source": "cliente-api-dotnet",
+  "BasePath": "_content/cliente-api-dotnet",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

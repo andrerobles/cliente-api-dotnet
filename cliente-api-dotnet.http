@@ -1,0 +1,9 @@
+@cliente_api_dotnet_HostAddress = http://localhost:5269
+
+GET {{cliente_api_dotnet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+GET {{cliente_api_dotnet_HostAddress}}/api/clientes/
+Accept: application/json
+
+###
