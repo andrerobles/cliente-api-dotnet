@@ -1,0 +1,9 @@
+# Arquivos compilados do dotnet
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Arquivos gerados pela ferramenta de documentação do dotnet
+*.xml
