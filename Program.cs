@@ -15,15 +15,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     if (connectionString != null)
     {
-        //options.UseNpgsql(connectionString);
+        //options.UseNpgsql(connectionString); // Sem log de depuração
 
         options.UseNpgsql(connectionString)
                .LogTo(Console.WriteLine, LogLevel.Information); // Log de depuração
     }
 });
 
+
+//TODO: Adicionar uma classe posteriormente para injetar as dependencias
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepositoy>();
 
 var app = builder.Build();
 
