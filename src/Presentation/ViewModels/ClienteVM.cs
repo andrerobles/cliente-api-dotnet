@@ -3,7 +3,7 @@ using ClienteApi.Data.Entities;
 namespace ClienteApi.ViewModels
 
 {
-    public class ClienteViewModel
+    public class ClienteVM
     {
         public int id { get; set; }
         public string? Nome { get; set; }
@@ -22,14 +22,14 @@ namespace ClienteApi.ViewModels
             return null;
         }
 
-        public static ClienteViewModel FromCliente(Cliente cliente)
+        public static ClienteVM FromCliente(Cliente cliente)
         {
             if (cliente == null)
             {
                 throw new ArgumentNullException(nameof(cliente));
             }
 
-            return new ClienteViewModel
+            return new ClienteVM
             {
                 id = cliente.id,
                 Nome = cliente.Nome,

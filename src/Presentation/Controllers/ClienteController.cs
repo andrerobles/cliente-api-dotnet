@@ -35,18 +35,18 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPost]
-        public IActionResult AddCliente(ClienteViewModel clienteViewModel)
+        public IActionResult AddCliente(ClienteVM clienteVM)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(clienteViewModel.Nome) || 
-                    string.IsNullOrWhiteSpace(clienteViewModel.Email) || 
-                    string.IsNullOrWhiteSpace(clienteViewModel.Telefone) || 
-                    string.IsNullOrWhiteSpace(clienteViewModel.EstaAtivo))
+                if (string.IsNullOrWhiteSpace(clienteVM.Nome) || 
+                    string.IsNullOrWhiteSpace(clienteVM.Email) || 
+                    string.IsNullOrWhiteSpace(clienteVM.Telefone) || 
+                    string.IsNullOrWhiteSpace(clienteVM.EstaAtivo))
                 {
                     throw new ArgumentException("Os atributos Nome, Email, Telefone e EstaAtivo são campos obrigatórios.");
                 }
-                _clienteService.Add(clienteViewModel);
+                _clienteService.Add(clienteVM);
                 return Ok("Cliente adicionado com sucesso");
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCliente(int id, ClienteViewModel clienteViewModel)
+        public IActionResult UpdateCliente(int id, ClienteVM clienteVM)
         {
             try
             {
@@ -66,15 +66,15 @@ namespace ClienteApi.Web.Controllers;
                     return NotFound($"Cliente com o ID {id} não encontrado");
                 }
 
-                if (string.IsNullOrWhiteSpace(clienteViewModel.Nome) || 
-                    string.IsNullOrWhiteSpace(clienteViewModel.Email) || 
-                    string.IsNullOrWhiteSpace(clienteViewModel.Telefone) || 
-                    string.IsNullOrWhiteSpace(clienteViewModel.EstaAtivo))
+                if (string.IsNullOrWhiteSpace(clienteVM.Nome) || 
+                    string.IsNullOrWhiteSpace(clienteVM.Email) || 
+                    string.IsNullOrWhiteSpace(clienteVM.Telefone) || 
+                    string.IsNullOrWhiteSpace(clienteVM.EstaAtivo))
                 {
                     throw new ArgumentException("Os atributos Nome, Email, Telefone e EstaAtivo são campos obrigatórios.");
                 }
 
-                _clienteService.Update(id, clienteViewModel);
+                _clienteService.Update(id, clienteVM);
 
                 return Ok("Cliente atualizado com sucesso");
             }

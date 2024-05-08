@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Text;
 using ClienteApi.ViewModels;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 
 namespace ClienteApi.Services;
 public class AuthService : IAuthService
@@ -39,27 +38,30 @@ public class AuthService : IAuthService
     return true;
   }
 
-  public async Task<UserViewModel> GetUserByEmail(string email)
+  public async Task<AuthVM> GetUserByEmail(string Email)
   {
-    if (email == "andrerobles@gmail.com")
+
+    var user = _usuarioService.GetByEmail(Email);
+
+    if (user != null)
     {
-            var user = new UserViewModel
+            var authVM = new AuthVM
             {
-                Email = "andrerobles@gmail.com",
-                Id = 1
+                Email = user.Email,
+                Id = user.id
             };
-            return user;
+            return authVM;
     }
 
-    throw new ArgumentException("Usuário não encontrado", nameof(email));
+    throw new ArgumentException("Usuário não encontrado", nameof(Email));
   }
 
-  public string GenerateToken(UserViewModel userViewModel)
+  public string GenerateToken(AuthVM authVM)
   {
     var claims = new[]
     {
-      new Claim("id", userViewModel.Id.ToString()),
-      new Claim("email", userViewModel.Email),
+      new Claim("id", authVM.Id.ToString()),
+      new Claim("email", authVM.Email),
       new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
     };
 

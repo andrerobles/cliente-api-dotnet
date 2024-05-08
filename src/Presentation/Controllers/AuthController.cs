@@ -15,21 +15,21 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Selecionar(UserViewModel userViewModel) {
+        public async Task<ActionResult<string>> Selecionar(AuthVM authVM) {
           //Verifica se usuário existe
-          var userExist = await _authService.UserExists(userViewModel.Email);
+          var userExist = await _authService.UserExists(authVM.Email);
           if(!userExist)
           {
             return Unauthorized("Usuário ou senha inválido.");
           }
           //Verifica se usuário e senha estão validos para dar continuidade no processo
-          var authUser = await _authService.AuthenticateAsync(userViewModel.Email, userViewModel.Senha);
+          var authUser = await _authService.AuthenticateAsync(authVM.Email, authVM.Senha);
           if(!authUser)
           {
             return Unauthorized("Usuário ou senha inválido.");
           }
 
-          var user = await _authService.GetUserByEmail(userViewModel.Email);
+          var user = await _authService.GetUserByEmail(authVM.Email);
           var token = _authService.GenerateToken(user);
 
           return token;

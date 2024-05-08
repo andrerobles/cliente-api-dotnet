@@ -12,13 +12,13 @@ public class ClienteService : IClienteService
         _clienteRepository = clienteRepository;
     }
 
-    public IEnumerable<ClienteViewModel> GetAll()
+    public IEnumerable<ClienteVM> GetAll()
     {
         var clientes = _clienteRepository.GetAll();
-        var clientesViewModel = new List<ClienteViewModel>();
+        var clientesViewModel = new List<ClienteVM>();
         foreach (var cliente in clientes)
         {
-            var clienteViewModel = ClienteViewModel.FromCliente(cliente);
+            var clienteViewModel = ClienteVM.FromCliente(cliente);
             clientesViewModel.Add(clienteViewModel);
         }
 
@@ -30,15 +30,15 @@ public class ClienteService : IClienteService
         return _clienteRepository.GetById(id);
     }
 
-    public void Add(ClienteViewModel clienteViewModel)
+    public void Add(ClienteVM clienteVM)
     {
         var cliente = new Cliente
         {
-            Nome = clienteViewModel.Nome,
-            Email = clienteViewModel.Email,
-            Telefone = clienteViewModel.Telefone,
-            EstaAtivo = string.Equals(clienteViewModel.EstaAtivo, "Sim", StringComparison.OrdinalIgnoreCase),
-            Descricao = clienteViewModel.Descricao,
+            Nome = clienteVM.Nome,
+            Email = clienteVM.Email,
+            Telefone = clienteVM.Telefone,
+            EstaAtivo = string.Equals(clienteVM.EstaAtivo, "Sim", StringComparison.OrdinalIgnoreCase),
+            Descricao = clienteVM.Descricao,
             CreatedAt = DateTime.Now.ToUniversalTime(),  
             UpdatedAt = DateTime.Now.ToUniversalTime()
         };
@@ -46,15 +46,15 @@ public class ClienteService : IClienteService
         _clienteRepository.Add(cliente);
     }
 
-    public void Update(int id, ClienteViewModel clienteViewModel)
+    public void Update(int id, ClienteVM clienteVM)
     {
         var cliente = new Cliente
         {
-            Nome = clienteViewModel.Nome,
-            Email = clienteViewModel.Email,
-            Telefone = clienteViewModel.Telefone,
-            EstaAtivo = string.Equals(clienteViewModel.EstaAtivo, "Sim", StringComparison.OrdinalIgnoreCase),
-            Descricao = clienteViewModel.Descricao,
+            Nome = clienteVM.Nome,
+            Email = clienteVM.Email,
+            Telefone = clienteVM.Telefone,
+            EstaAtivo = string.Equals(clienteVM.EstaAtivo, "Sim", StringComparison.OrdinalIgnoreCase),
+            Descricao = clienteVM.Descricao,
             CreatedAt = DateTime.Now.ToUniversalTime(),  
             UpdatedAt = DateTime.Now.ToUniversalTime()
         };

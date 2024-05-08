@@ -12,14 +12,14 @@ public class UsuarioService : IUsuarioService
         _usuarioRepository = usuarioRepository;
     }
 
-    public IEnumerable<UsuarioViewModel> GetAll()
+    public IEnumerable<UsuarioVM> GetAll()
     {
         var usuarios = _usuarioRepository.GetAll();
-        var usuariosViewModel = new List<UsuarioViewModel>();
+        var usuariosViewModel = new List<UsuarioVM>();
         foreach (var usuario in usuarios)
         {
-            var usuarioViewModel = UsuarioViewModel.FromUsuario(usuario);
-            usuariosViewModel.Add(usuarioViewModel);
+            var usuarioVM = UsuarioVM.FromUsuario(usuario);
+            usuariosViewModel.Add(usuarioVM);
         }
 
         return usuariosViewModel;
@@ -40,12 +40,12 @@ public class UsuarioService : IUsuarioService
         return _usuarioRepository.GetByEmail(Email);
     }
 
-    public void Add(UsuarioViewModel usuarioViewModel)
+    public void Add(UsuarioVM usuarioVM)
     {
         var usuario = new Usuario
         {
-            Nome = usuarioViewModel.Nome,
-            Email = usuarioViewModel.Email,
+            Nome = usuarioVM.Nome,
+            Email = usuarioVM.Email,
             CreatedAt = DateTime.Now.ToUniversalTime(),  
             UpdatedAt = DateTime.Now.ToUniversalTime()
         };
@@ -53,12 +53,12 @@ public class UsuarioService : IUsuarioService
         _usuarioRepository.Add(usuario);
     }
 
-    public void Update(int id, UsuarioViewModel usuarioViewModel)
+    public void Update(int id, UsuarioVM usuarioVM)
     {
         var usuario = new Usuario
         {
-            Nome = usuarioViewModel.Nome,
-            Email = usuarioViewModel.Email,
+            Nome = usuarioVM.Nome,
+            Email = usuarioVM.Email,
             CreatedAt = DateTime.Now.ToUniversalTime(),  
             UpdatedAt = DateTime.Now.ToUniversalTime()
         };

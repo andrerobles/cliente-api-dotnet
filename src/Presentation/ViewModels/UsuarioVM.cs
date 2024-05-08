@@ -3,7 +3,7 @@ using ClienteApi.Data.Entities;
 namespace ClienteApi.ViewModels
 
 {
-    public class UsuarioViewModel
+    public class UsuarioVM
     {
         public int id { get; set; }
         public string? Nome { get; set; }
@@ -19,14 +19,14 @@ namespace ClienteApi.ViewModels
             return null;
         }
 
-        public static UsuarioViewModel FromUsuario(Usuario usuario)
+        public static UsuarioVM FromUsuario(Usuario usuario)
         {
             if (usuario == null)
             {
                 throw new ArgumentNullException(nameof(usuario));
             }
 
-            return new UsuarioViewModel
+            return new UsuarioVM
             {
                 id = usuario.id,
                 Nome = usuario.Nome,

@@ -6,6 +6,6 @@ public interface IAuthService
 {
    Task<bool> AuthenticateAsync(string Email, string Senha);
    Task<bool> UserExists(string email);
-   public string GenerateToken(UserViewModel userViewModel);
-   public Task<UserViewModel> GetUserByEmail(string email);
+   public string GenerateToken(AuthVM authVM);
+   public Task<AuthVM> GetUserByEmail(string email);
 }

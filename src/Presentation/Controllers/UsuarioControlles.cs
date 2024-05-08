@@ -35,16 +35,16 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPost]
-        public IActionResult AddUsuario(UsuarioViewModel usuarioViewModel)
+        public IActionResult AddUsuario(UsuarioVM usuarioVM)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(usuarioViewModel.Nome) || 
-                    string.IsNullOrWhiteSpace(usuarioViewModel.Email))
+                if (string.IsNullOrWhiteSpace(usuarioVM.Nome) || 
+                    string.IsNullOrWhiteSpace(usuarioVM.Email))
                 {
                     throw new ArgumentException("Os atributos Nome e Email são campos obrigatórios.");
                 }
-                _usuarioService.Add(usuarioViewModel);
+                _usuarioService.Add(usuarioVM);
                 return Ok("Usuario adicionado com sucesso");
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateUsuario(int id, UsuarioViewModel usuarioViewModel)
+        public IActionResult UpdateUsuario(int id, UsuarioVM usuarioVM)
         {
             try
             {
@@ -64,13 +64,13 @@ namespace ClienteApi.Web.Controllers;
                     return NotFound($"Usuario com o ID {id} não encontrado");
                 }
 
-                if (string.IsNullOrWhiteSpace(usuarioViewModel.Nome) || 
-                    string.IsNullOrWhiteSpace(usuarioViewModel.Email))
+                if (string.IsNullOrWhiteSpace(usuarioVM.Nome) || 
+                    string.IsNullOrWhiteSpace(usuarioVM.Email))
                 {
                     throw new ArgumentException("Os atributos Nome e Email são campos obrigatórios.");
                 }
 
-                _usuarioService.Update(id, usuarioViewModel);
+                _usuarioService.Update(id, usuarioVM);
 
                 return Ok("Usuario atualizado com sucesso");
             }

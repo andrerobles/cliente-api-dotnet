@@ -1,9 +1,7 @@
-using ClienteApi.Data.Entities;
-
 namespace ClienteApi.ViewModels
 
 {
-    public class UserViewModel
+    public class AuthVM
     {
         public int Id { get; set; }
         public string Email { get; set; }

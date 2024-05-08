@@ -4,9 +4,9 @@ using ClienteApi.ViewModels;
 namespace ClienteApi.Services;
 public interface IClienteService
 {
-    IEnumerable<ClienteViewModel> GetAll();
+    IEnumerable<ClienteVM> GetAll();
     Cliente? GetById(int id);
-    void Add(ClienteViewModel clienteViewModel);
-    void Update(int id, ClienteViewModel clienteViewModel);
+    void Add(ClienteVM clienteVM);
+    void Update(int id, ClienteVM clienteVM);
     void Delete(int id);
 }
