@@ -30,6 +30,16 @@ public class UsuarioService : IUsuarioService
         return _usuarioRepository.GetById(id);
     }
 
+    public Usuario? ChecksValidAccess(string Email, string Senha)
+    {
+        return _usuarioRepository.ChecksValidAccess(Email, Senha);
+    }
+
+    public Usuario? GetByEmail(string Email)
+    {
+        return _usuarioRepository.GetByEmail(Email);
+    }
+
     public void Add(UsuarioViewModel usuarioViewModel)
     {
         var usuario = new Usuario

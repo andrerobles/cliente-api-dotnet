@@ -9,20 +9,33 @@ namespace ClienteApi.Services;
 public class AuthService : IAuthService
 {
   private readonly IConfiguration _configuration;
+  private readonly IUsuarioService _usuarioService;
 
-  public AuthService(IConfiguration configuration)
+  public AuthService(IConfiguration configuration, IUsuarioService usuarioService)
   {
-    _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+    _configuration = configuration;
+    _usuarioService = usuarioService;
+
   }
 
-  public async Task<bool> AuthenticateAsync(string email, string senha)
+  public async Task<bool> AuthenticateAsync(string Email, string Senha)
   {
-    //TODO: Implementar verificação de senha
+    var user = _usuarioService.ChecksValidAccess(Email, Senha);
+    if(user == null) 
+    {
+      return false;
+    }
     return true;
   }
 
-  public async Task<bool> UserExists(string email) 
+  public async Task<bool> UserExists(string Email) 
   {
+    var user = _usuarioService.GetByEmail(Email);
+    if (user == null)
+    {
+      return false;
+    }
+
     return true;
   }
 

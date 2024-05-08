@@ -21,6 +21,16 @@ public class UsuarioRepositoy : IUsuarioRepository
             return _context.Usuarios.FirstOrDefault(c => c.id == id);
         }
 
+        public Usuario? GetByEmail(string Email)
+        {
+            return _context.Usuarios.FirstOrDefault(c => c.Email == Email);
+        }
+
+        public Usuario? ChecksValidAccess(string Email, string Senha)
+        {
+            return _context.Usuarios.FirstOrDefault(c => c.Email == Email && c.Senha == Senha);
+        }
+
         public void Add(Usuario usuario)
         {
             if (usuario == null)
