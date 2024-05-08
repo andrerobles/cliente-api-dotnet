@@ -4,7 +4,7 @@ API desenvolvida em Dotnet v8.0.204 e utilizando como Banco de Dados PostgreSQL 
 
 ### Organização do Projeto
 
-Os diretórios são separados conforme a sua Função.
+Os diretórios são separados conforme a sua funcionlidade.
 
 ### Data
 
