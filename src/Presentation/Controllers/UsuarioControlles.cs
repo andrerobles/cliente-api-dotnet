@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ClienteApi.Services;
 using ClienteApi.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace ClienteApi.Web.Controllers;
@@ -17,6 +18,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetAllUsuarios()
         {
             var usuarios = _usuarioService.GetAll();
@@ -24,6 +26,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult GetUsuarioById(int id)
         {
             var usuario = _usuarioService.GetById(id);
@@ -35,6 +38,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddUsuario(UsuarioVM usuarioVM)
         {
             try
@@ -54,6 +58,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult UpdateUsuario(int id, UsuarioVM usuarioVM)
         {
             try
@@ -81,6 +86,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeleteUsuario(int id)
         {
             try

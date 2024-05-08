@@ -15,7 +15,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Selecionar(AuthVM authVM) {
+        public async Task<ActionResult<TokenVM>> Selecionar(AuthVM authVM) {
           //Verifica se usuário existe
           var userExist = await _authService.UserExists(authVM.Email);
           if(!userExist)
@@ -32,7 +32,10 @@ namespace ClienteApi.Web.Controllers;
           var user = await _authService.GetUserByEmail(authVM.Email);
           var token = _authService.GenerateToken(user);
 
-          return token;
+          return new TokenVM 
+          {
+            Token = token
+          };
         }
     }
 

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ClienteApi.Services;
 using ClienteApi.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace ClienteApi.Web.Controllers;
@@ -17,6 +18,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetAllClientes()
         {
             var clientes = _clienteService.GetAll();
@@ -24,6 +26,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult GetClienteById(int id)
         {
             var cliente = _clienteService.GetById(id);
@@ -35,6 +38,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddCliente(ClienteVM clienteVM)
         {
             try
@@ -56,6 +60,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult UpdateCliente(int id, ClienteVM clienteVM)
         {
             try
@@ -85,6 +90,7 @@ namespace ClienteApi.Web.Controllers;
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeleteCliente(int id)
         {
             try
